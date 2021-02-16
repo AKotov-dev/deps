@@ -1,0 +1,67 @@
+#!/usr/bin/bash
+
+#The script is intended for automatic installation BuildRequires
+#dependencies and search/check Requires/Recommends packages from the *.spec-file
+#GPLv3, <Alex Kotov> (C) 2020
+
+clear
+
+#Сбрасываем цвета
+tput sgr0
+#Определяем цвет выделения
+color='\e[1m'; ncolor='\e[0m';
+
+#Если есть файл(ы) *.spec, берём имя последнего в списке (spec=)
+if [[ -z $(find $(pwd) -maxdepth 1 -name '*.spec') ]]; then
+  read -p "The *.spec-file not found in this directory. Press Enter to exit..."
+  exit 1
+     else
+  spec=$(ls $(pwd)/*.spec | tail -n1);
+fi;
+
+echo -e "${color}Search BuildRequires from $spec:${ncolor}"
+echo "---"
+
+#Забираем из спека все строки "BuildRequires:"
+deps=$(grep -i '^BuildRequires:' $spec | awk '{ $1=""; print $0 }')
+
+#Выбираем только имена пакетов зависимостей без запятых
+for string in $deps
+do
+  packages="$packages $(echo $string | grep -Ev '=|>|<|%|{|}' | grep -v '^[0-9]\.' | tr ',' '\n')"
+done
+
+#Если зависимости найдены, предлагаем их к установке
+if [ -n "$packages" ]; then
+  echo $packages; echo -e "---\n";
+  echo "Count of dependencies: $(echo $packages | awk '{print NF}')"
+  read -p "Press Enter to install or Ctrl+C for cancel operation..."; echo;
+  urpmi --auto $packages
+     else
+  echo; read -p "The BuildRequires not found in $spec. Press Enter to continue..."
+#  exit 0
+fi;
+
+echo; echo -e "${color}Search & Check Requires and Recommends from $spec:${ncolor}"
+echo "---"
+
+deps=$(grep -iE '^Requires:|^Recommends:' $spec | awk '{ $1=""; print $0 }')
+
+#Выбираем только имена пакетов зависимостей без запятых
+packages=''
+for string in $deps
+do
+  packages="$packages $(echo $string | grep -Ev '=|>|<|%|{|}' | grep -v '^[0-9]\.' | tr ',' '\n')"
+done
+
+#Если зависимости найдены, ищем их в репозиториях
+if [ -n "$packages" ]; then
+  echo $packages; echo -e "---\n";
+  echo "Count of dependencies: $(echo $packages | awk '{print NF}')"
+  echo "---"
+  urpmq $packages
+     else
+  echo; read -p "The Requires not found in $spec. Press Enter to exit..."
+fi;
+
+echo "---"; read -p "The procedure is completed. Press Enter to exit..."

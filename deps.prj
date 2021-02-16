@@ -1,0 +1,82 @@
+[NAME]
+name=deps
+
+[VERSION]
+version=2.3
+
+[RELEASE]
+release=3.mrx8
+
+[GROUP]
+group=Applications/System
+
+[DESCRIPTION]
+0=This package is designed to automatically installation BuildRequires dependencies and search/check
+1=Requires/Recommends packages from the *.spec-file. Go to the directory that contains the spec file and give the command "deps"
+2=...
+3=More information: /usr/share/doc/package_name/repack.txt
+
+[MAINTAINER]
+maintainer=Alex Kotov
+
+[VENDOR]
+vendor=alex_q_2000 (C) 2020
+
+[SUMMARY]
+summary=Script for automatically install build requires from a spec file
+
+[URLCOPY]
+urlcopy=https://cloud.mail.ru/public/5kma/573FjdpNE
+
+[LICENSE]
+license=GPLv3+
+
+[DEPS]
+deps=rpm-build
+
+[META]
+meta=0
+
+[NOARCH]
+noarch=1
+
+[SIGN]
+sign=0
+
+[FILES]
+0=/usr/bin/deps
+1=/usr/share/doc/deps/
+
+[AFTERINSTALL]
+0=mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+
+[AFTERREMOVE]
+0=#ldconfig
+1=#update-desktop-database -q /usr/share/applications
+2=#update-mime-database /usr/share/mime
+3=#gtk-update-icon-cache -q -f /usr/share/icons/hicolor
+
+[URL32]
+url32=https://cloud.mail.ru/public/5kma/573FjdpNE
+
+[URL64]
+url64=https://cloud.mail.ru/public/5kma/573FjdpNE
+
+[PROGRAMNAME]
+programname=deps
+
+[DEVTOOL]
+devtool=BASH
+
+[TOOLVERSION]
+toolversion=unknown
+
+[INFO]
+0=The script is intended for automatic installation BuildRequires
+1=dependencies and search/check Requires/Recommends packages from the *.spec-file
+2=
+3=v2.3-3
+4=+ Search/Check Requires and Recommends dependencies
+5=
+6=v2.3-2
+7=+ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
