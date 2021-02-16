@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #The script is intended for automatic installation BuildRequires
 #dependencies and search/check Requires/Recommends packages from the *.spec-file
