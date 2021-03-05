@@ -2,7 +2,7 @@
 
 #The script is intended for automatic installation BuildRequires
 #dependencies and search/check Requires/Recommends packages from the *.spec-file
-#GPLv3, <Alex Kotov> (C) 2020
+#GPLv3, <Alex Kotov> (C) 2021
 
 clear
 
@@ -11,12 +11,21 @@ tput sgr0
 #Определяем цвет выделения
 color='\e[1m'; ncolor='\e[0m';
 
+#Проверка имени *.spec
+if [ -z "$1" ]; then
 #Если есть файл(ы) *.spec, берём имя последнего в списке (spec=)
 if [[ -z $(find $(pwd) -maxdepth 1 -name '*.spec') ]]; then
   read -p "The *.spec-file not found in this directory. Press Enter to exit..."
   exit 1
      else
   spec=$(ls $(pwd)/*.spec | tail -n1);
+fi
+     else
+  spec="$(pwd)/$1"
+  if [ ! -f $spec ]; then
+    read -p "The file \"$1\" not found in this directory. Press Enter to exit..."
+    exit 1
+  fi
 fi;
 
 echo -e "${color}Search BuildRequires from $spec:${ncolor}"
@@ -39,7 +48,6 @@ if [ -n "$packages" ]; then
   urpmi --auto $packages
      else
   echo; read -p "The BuildRequires not found in $spec. Press Enter to continue..."
-#  exit 0
 fi;
 
 echo; echo -e "${color}Search & Check Requires and Recommends from $spec:${ncolor}"
@@ -59,8 +67,11 @@ if [ -n "$packages" ]; then
   echo $packages; echo -e "---\n";
   echo "Count of dependencies: $(echo $packages | awk '{print NF}')"
   echo "---"
-  urpmq $packages
-     else
+  for p in $packages
+    do
+    echo "Check: $p"; [[ $(dnf provides "$p") ]]
+  done
+    else
   echo; read -p "The Requires not found in $spec. Press Enter to exit..."
 fi;
 
