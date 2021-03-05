@@ -5,7 +5,7 @@ name=deps
 version=2.3
 
 [RELEASE]
-release=3.mrx8
+release=4.mrx8
 
 [GROUP]
 group=Applications/System
@@ -20,7 +20,7 @@ group=Applications/System
 maintainer=Alex Kotov
 
 [VENDOR]
-vendor=alex_q_2000 (C) 2020
+vendor=alex_q_2000 (C) 2021
 
 [SUMMARY]
 summary=Script for automatically install build requires from a spec file
@@ -50,12 +50,6 @@ sign=0
 [AFTERINSTALL]
 0=mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 
-[AFTERREMOVE]
-0=#ldconfig
-1=#update-desktop-database -q /usr/share/applications
-2=#update-mime-database /usr/share/mime
-3=#gtk-update-icon-cache -q -f /usr/share/icons/hicolor
-
 [URL32]
 url32=https://cloud.mail.ru/public/5kma/573FjdpNE
 
@@ -75,8 +69,12 @@ toolversion=unknown
 0=The script is intended for automatic installation BuildRequires
 1=dependencies and search/check Requires/Recommends packages from the *.spec-file
 2=
-3=v2.3-3
-4=+ Search/Check Requires and Recommends dependencies
-5=
-6=v2.3-2
-7=+ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+3=v2.4-4
+4=+ spec file name in command line
+5=+ use "dnf" in Search/Check Requires and Recommends dependencies
+6=
+7=v2.3-3
+8=+ Search/Check Requires and Recommends dependencies
+9=
+10=v2.3-2
+11=+ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
