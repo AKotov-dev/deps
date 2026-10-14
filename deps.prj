@@ -12,7 +12,7 @@ group=Accessibility
 
 [DESCRIPTION]
 0=This package is designed to automatically installation BuildRequires dependencies and search/check
-1=Requires/Recommends packages from the *.spec-file. Go to the directory that contains the spec file and give the command "deps"
+1=Requires/Recommends packages from the .spec-files. Go to the directory that contains the spec file and give the command "deps"
 2=...
 3=More information: /usr/share/doc/package_name/repack.txt
 
@@ -23,7 +23,7 @@ maintainer=Alex Kotov
 vendor=alex_q_2000 (C) 2026
 
 [SUMMARY]
-summary=Script for automatically install build requires from a spec file
+summary=Parser script for the automatic installation of BuildRequires from .spec files.
 
 [URLCOPY]
 urlcopy=https://github.com/AKotov-dev/deps
