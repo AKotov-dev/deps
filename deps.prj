@@ -32,7 +32,7 @@ urlcopy=https://github.com/AKotov-dev/deps
 license=GPL-3.0-or-later
 
 [DEPS]
-deps=rpm-build
+deps=rpm-build dnf
 
 [META]
 meta=0
