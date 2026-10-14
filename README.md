@@ -1,4 +1,4 @@
-**deps** - parser script for automatically installing `BuildRequires` packages from .spec-files  without `rpmspec`.  
+**deps** — a script for automatically installing `BuildRequires` dependencies from `.spec` files without `rpmspec`.  
   
 **Dependencies:** rpm-build dnf5
   
