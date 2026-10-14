@@ -2,13 +2,13 @@
 name=deps
 
 [VERSION]
-version=2.3
+version=2.4
 
 [RELEASE]
-release=4.mrx8
+release=0.mrx10
 
 [GROUP]
-group=Applications/System
+group=Accessibility
 
 [DESCRIPTION]
 0=This package is designed to automatically installation BuildRequires dependencies and search/check
@@ -20,16 +20,16 @@ group=Applications/System
 maintainer=Alex Kotov
 
 [VENDOR]
-vendor=alex_q_2000 (C) 2021
+vendor=alex_q_2000 (C) 2026
 
 [SUMMARY]
 summary=Script for automatically install build requires from a spec file
 
 [URLCOPY]
-urlcopy=https://cloud.mail.ru/public/5kma/573FjdpNE
+urlcopy=https://github.com/AKotov-dev/deps
 
 [LICENSE]
-license=GPLv3+
+license=GPL-3.0-or-later
 
 [DEPS]
 deps=rpm-build
@@ -40,8 +40,8 @@ meta=0
 [NOARCH]
 noarch=1
 
-[SIGN]
-sign=0
+[DEB]
+deb=0
 
 [FILES]
 0=/usr/bin/deps
@@ -51,16 +51,13 @@ sign=0
 0=mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 
 [URL32]
-url32=https://cloud.mail.ru/public/5kma/573FjdpNE
-
-[URL64]
-url64=https://cloud.mail.ru/public/5kma/573FjdpNE
+url32=https://github.com/AKotov-dev/deps
 
 [PROGRAMNAME]
 programname=deps
 
 [DEVTOOL]
-devtool=BASH
+devtool=Shell
 
 [TOOLVERSION]
 toolversion=unknown
@@ -69,12 +66,17 @@ toolversion=unknown
 0=The script is intended for automatic installation BuildRequires
 1=dependencies and search/check Requires/Recommends packages from the *.spec-file
 2=
-3=v2.4-4
-4=+ spec file name in command line
-5=+ use "dnf" in Search/Check Requires and Recommends dependencies
-6=
-7=v2.3-3
-8=+ Search/Check Requires and Recommends dependencies
-9=
-10=v2.3-2
-11=+ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+3=
+4=v2.4
+5=+ Path support with spaces (`"$spec"`)
+6=+ Filtering duplicate dependencies (`| sort -u`)
+7=
+8=v2.3-4
+9=+ spec file name in command line
+10=+ use "dnf" in Search/Check Requires and Recommends dependencies
+11=
+12=v2.3-3
+13=+ Search/Check Requires and Recommends dependencies
+14=
+15=v2.3-2
+16=+ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}

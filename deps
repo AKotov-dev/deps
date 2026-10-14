@@ -22,7 +22,7 @@ if [[ -z $(find $(pwd) -maxdepth 1 -name '*.spec') ]]; then
 fi
      else
   spec="$(pwd)/$1"
-  if [ ! -f $spec ]; then
+  if [ ! -f "$spec" ]; then
     read -p "The file \"$1\" not found in this directory. Press Enter to exit..."
     exit 1
   fi
@@ -32,7 +32,7 @@ echo -e "${color}Search BuildRequires from $spec:${ncolor}"
 echo "---"
 
 #Забираем из спека все строки "BuildRequires:"
-deps=$(grep -i '^BuildRequires:' $spec | awk '{ $1=""; print $0 }')
+deps=$(grep -i '^BuildRequires:' "$spec" | awk '{ $1=""; print $0 }' | sort -u)
 
 #Выбираем только имена пакетов зависимостей без запятых
 for string in $deps
@@ -53,7 +53,7 @@ fi;
 echo; echo -e "${color}Search & Check Requires and Recommends from $spec:${ncolor}"
 echo "---"
 
-deps=$(grep -iE '^Requires:|^Recommends:' $spec | awk '{ $1=""; print $0 }')
+deps=$(grep -iE '^Requires:|^Recommends:' "$spec" | awk '{ $1=""; print $0 }' | sort -u)
 
 #Выбираем только имена пакетов зависимостей без запятых
 packages=''
