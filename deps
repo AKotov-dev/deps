@@ -1,8 +1,10 @@
 #!/bin/bash
 
-#The script is intended for automatic installation BuildRequires
-#dependencies and search/check Requires/Recommends packages from the *.spec-file
-#GPLv3, <Alex Kotov> (C) 2021
+# =====================================================================================
+# The script is intended for automatic installation BuildRequires
+# dependencies and search/check Requires/Recommends packages from the *.spec-file
+# GPLv3, <Alex Kotov> (C) 2026
+# =====================================================================================
 
 clear
 
@@ -69,7 +71,7 @@ if [ -n "$packages" ]; then
   echo "---"
   for p in $packages
     do
-    echo "Check: $p"; [[ $(dnf provides "$p") ]]
+    echo "Check: $p"; [[ $(dnf provides "$p" -q) ]]
   done
     else
   echo; read -p "The Requires not found in $spec. Press Enter to exit..."
