@@ -1,4 +1,4 @@
-**deps** - parser script for automatically installing `BuildRequires` packages from files `*.spec` without `rpmspec`.  
+**deps** - parser script for automatically installing `BuildRequires` packages from .spec-files  without `rpmspec`.  
   
 The script is useful at the stage of rebuilding or backporting RPM packages of Mageia Linux or Fedora. It automatically detects the build dependencies (`BuildRequires`) that are described in `*.spec` and tries to install them.  
   
