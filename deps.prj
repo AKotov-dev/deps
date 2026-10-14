@@ -23,7 +23,7 @@ maintainer=Alex Kotov
 vendor=alex_q_2000 (C) 2026
 
 [SUMMARY]
-summary=Parser script for the automatic installation of BuildRequires from .spec files.
+summary=deps — a script for automatically installing BuildRequires dependencies from .spec files without rpmspec
 
 [URLCOPY]
 urlcopy=https://github.com/AKotov-dev/deps
@@ -32,7 +32,7 @@ urlcopy=https://github.com/AKotov-dev/deps
 license=GPL-3.0-or-later
 
 [DEPS]
-deps=
+deps=rpm-build dnf5
 
 [META]
 meta=0
